@@ -6,7 +6,7 @@
 ![Django](https://img.shields.io/badge/Django-4.2-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![Railway](https://img.shields.io/badge/Deployed-Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)
+![Railway](https://img.shields.io/badge/Deployed-Render-0B0D0E?style=for-the-badge&logo=render&logoColor=white)
 
 **Enterprise-grade ESG emissions ingestion, normalization, and review platform.**  
 Ingest messy data from SAP, utility portals, and travel systems — normalize, flag, review, and report with full audit trail.
