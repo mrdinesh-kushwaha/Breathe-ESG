@@ -11,7 +11,7 @@
 **Enterprise-grade ESG emissions ingestion, normalization, and review platform.**  
 Ingest messy data from SAP, utility portals, and travel systems — normalize, flag, review, and report with full audit trail.
 
-[Live Demo](https://breathe-esg-77ta.onrender.com) · [API Docs](#api-overview) · [Architecture](#architecture-overview)
+[Live Demo](https://breathe-esg-77ta.onrender.com) ✅· [API Docs](#api-overview) · [Architecture](#architecture-overview)
 
 </div>
 
@@ -78,7 +78,7 @@ Breathe ESG solves a real enterprise problem — companies receive emissions dat
 | Backend | Django 4.2 + Django REST Framework |
 | Auth | JWT (djangorestframework-simplejwt) |
 | Database | PostgreSQL 14 |
-| Deployment | Railway |
+| Deployment | Render |
 | Emissions Factors | DEFRA 2023 / IEA 2022 |
 
 ---
