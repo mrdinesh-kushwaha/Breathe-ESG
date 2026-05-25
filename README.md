@@ -6,7 +6,7 @@
 ![Django](https://img.shields.io/badge/Django-4.2-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-![Railway](https://img.shields.io/badge/Deployed-Render-0B0D0E?style=for-the-badge&logo=render&logoColor=white)
+![Render](https://img.shields.io/badge/Deployed-Render-0B0D0E?style=for-the-badge&logo=render&logoColor=white)
 
 **Enterprise-grade ESG emissions ingestion, normalization, and review platform.**  
 Ingest messy data from SAP, utility portals, and travel systems — normalize, flag, review, and report with full audit trail.
@@ -231,21 +231,21 @@ All endpoints require `Authorization: Bearer <token>` except login.
 
 ---
 
-## Deployment (Railway)
+## Deployment (Render)
 
 ```
-backend/   → Railway service (Python/Django)
-frontend/  → Railway service (Node/Vite)
-database/  → Railway PostgreSQL (auto-provisioned)
+backend/   → Render service (Python/Django)
+frontend/  → Render service (Node/Vite)
+database/  → Render PostgreSQL (auto-provisioned)
 ```
 
 Environment variables required for backend:
 ```
 SECRET_KEY=<generate>
 DEBUG=False
-ALLOWED_HOSTS=.railway.app
-CORS_ALLOWED_ORIGINS=https://your-frontend.railway.app
-DATABASE_URL=<auto-set by Railway>
+ALLOWED_HOSTS=.Render.app
+CORS_ALLOWED_ORIGINS=https://your-frontend.Render.app
+DATABASE_URL=<auto-set by Render>
 ```
 
 ---
