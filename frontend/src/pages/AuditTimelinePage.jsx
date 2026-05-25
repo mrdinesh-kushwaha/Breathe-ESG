@@ -48,8 +48,14 @@ export default function AuditTimelinePage() {
                   <div className="absolute left-3 top-1.5 w-2.5 h-2.5 rounded-full bg-white border-2 border-gray-300" />
                   <div className="flex-1 pb-4 border-b border-gray-50 last:border-0 last:pb-0">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
-                      <span className={`badge ${ACTION_STYLES[entry.action] || "bg-gray-100 text-gray-600"}`}>
-                        {entry.action_display}
+                      <span className={`badge ${
+                        (entry.action === "reject" && entry.new_value === "pending") || entry.action === "flag"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : ACTION_STYLES[entry.action] || "bg-gray-100 text-gray-600"
+                      }`}>
+                        {(entry.action === "reject" && entry.new_value === "pending") || entry.action === "flag"
+                          ? "Flagged"
+                          : entry.action_display}
                       </span>
                       <span className="text-sm text-gray-700 font-medium">
                         {entry.actor_name || entry.actor_email || "System"}
@@ -78,7 +84,15 @@ export default function AuditTimelinePage() {
                         <span className="text-gray-400">{entry.field_name}:</span>{" "}
                         <span className="text-red-400 line-through">{entry.old_value || "—"}</span>
                         {" → "}
-                        <span className="text-green-600">{entry.new_value || "—"}</span>
+                        <span className={
+                          entry.field_name === "review_status" && entry.new_value === "rejected"
+                            ? "text-red-600"
+                            : entry.field_name === "review_status" && (entry.new_value === "pending" && (entry.action === "reject" || entry.action === "flag"))
+                            ? "text-yellow-700"
+                            : "text-green-600"
+                        }>
+                          {entry.new_value || "—"}
+                        </span>
                       </div>
                     )}
 

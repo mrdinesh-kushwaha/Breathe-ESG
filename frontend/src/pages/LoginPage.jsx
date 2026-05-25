@@ -94,7 +94,7 @@ export default function LoginPage() {
 
           {/* Bottom */}
           <div className="text-gray-600 text-xs">
-            © 2024 Breathe ESG. Enterprise Emissions Management.
+            © 2026 Breathe ESG. Enterprise Emissions Management.
           </div>
         </div>
       </div>

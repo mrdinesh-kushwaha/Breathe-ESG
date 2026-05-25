@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { getRecords, reviewRecord, bulkReview } from "../api/client";
+import { useAuth } from "../hooks/useAuth";
 
 function ScopeBadge({ scope }) {
   const map = {
@@ -32,6 +33,8 @@ function SourceBadge({ type }) {
 }
 
 export default function ReviewQueuePage() {
+  const { user } = useAuth();
+  const isReviewer = user?.role === "reviewer" || user?.role === "admin";
   const [records, setRecords] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -257,9 +260,9 @@ export default function ReviewQueuePage() {
                     >
                       View
                     </Link>
-                    {rec.review_status === "pending" && (
+                    {rec.review_status === "pending" && isReviewer && (
                       <>
-                        <button
+                      <button
                           onClick={() => handleSingleReview(rec.id, "approve")}
                           disabled={actionLoading}
                           className="text-xs text-green-600 hover:text-green-800 font-medium disabled:opacity-40"

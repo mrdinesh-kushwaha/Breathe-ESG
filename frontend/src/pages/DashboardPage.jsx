@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDashboardStats } from "../api/client";
+import { useAuth } from "../hooks/useAuth";
 
 function StatCard({ label, value, sub, color = "gray" }) {
   const colors = {
@@ -54,6 +55,8 @@ function StatusBadge({ status }) {
 }
 
 export default function DashboardPage() {
+  const { user } = useAuth();
+  const isAnalyst = user?.role === "analyst" || user?.role === "admin";
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -88,9 +91,11 @@ export default function DashboardPage() {
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-500 text-sm mt-0.5">ESG emissions overview</p>
         </div>
-        <Link to="/upload" className="btn-primary">
-          New Upload
-        </Link>
+        {isAnalyst && (
+          <Link to="/upload" className="btn-primary">
+            New Upload
+          </Link>
+        )}
       </div>
 
       {/* Stat cards */}
@@ -157,9 +162,11 @@ export default function DashboardPage() {
         <div className="card p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-gray-700">Recent Uploads</h2>
-            <Link to="/upload" className="text-xs text-green-600 hover:text-green-700">
-              View all →
-            </Link>
+            {isAnalyst && (
+              <Link to="/upload" className="text-xs text-green-600 hover:text-green-700">
+                View all →
+              </Link>
+            )}
           </div>
           {batches.recent.length === 0 ? (
             <p className="text-gray-400 text-sm">No uploads yet.</p>

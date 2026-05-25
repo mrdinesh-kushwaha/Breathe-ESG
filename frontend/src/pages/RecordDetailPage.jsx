@@ -90,9 +90,10 @@ export default function RecordDetailPage() {
             <ScopeBadge scope={record.scope_category} />
             <span className={`badge ${
               record.review_status === "approved" ? "bg-green-100 text-green-700" :
+              audit.length > 0 && audit[0].action === "flag" ? "bg-yellow-100 text-yellow-700" :
               record.review_status === "rejected" ? "bg-red-100 text-red-700" :
               "bg-yellow-100 text-yellow-700"
-            }`}>{record.review_status}</span>
+            }`}>{audit.length > 0 && audit[0].action === "flag" ? "Flagged" : record.review_status}</span>
             {record.suspicious_flag && (
               <span className="badge bg-red-100 text-red-600">⚠ Suspicious</span>
             )}
@@ -225,15 +226,16 @@ export default function RecordDetailPage() {
                       <span className={`badge text-xs ${
                         entry.action === "approve" ? "bg-green-100 text-green-700" :
                         entry.action === "reject" ? "bg-red-100 text-red-700" :
+                        entry.action === "flag" ? "bg-yellow-100 text-yellow-700" :
                         entry.action === "ingest" ? "bg-blue-100 text-blue-700" :
                         "bg-gray-100 text-gray-600"
-                      }`}>{entry.action_display}</span>
+                      }`}>{entry.action === "flag" ? "Flagged" : entry.action_display}</span>
                       <span className="text-sm text-gray-600 font-medium">{entry.actor_name || entry.actor_email}</span>
                       <span className="text-xs text-gray-400">{new Date(entry.timestamp).toLocaleString()}</span>
                     </div>
                     {entry.field_name && (
                       <div className="mt-1 text-xs text-gray-500 font-mono">
-                        {entry.field_name}: <span className="text-red-400">{entry.old_value}</span> → <span className="text-green-600">{entry.new_value}</span>
+                        {entry.field_name}: <span className="text-red-400">{entry.old_value}</span> → <span className={entry.new_value === "rejected" ? "text-red-600" : entry.new_value === "pending" && (entry.action === "reject" || entry.action === "flag") ? "text-yellow-700" : "text-green-600"}>{entry.new_value}</span>
                       </div>
                     )}
                     {entry.note && (

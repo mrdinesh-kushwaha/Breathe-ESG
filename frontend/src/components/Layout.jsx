@@ -1,17 +1,18 @@
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-const NAV = [
-  { to: "/", label: "Dashboard", icon: "⬛" },
-  { to: "/upload", label: "Upload Center", icon: "⬆" },
-  { to: "/review", label: "Review Queue", icon: "✓" },
-  { to: "/audit", label: "Audit Timeline", icon: "📋" },
-];
-
 export default function Layout() {
   const { user, signOut } = useAuth();
-  const navigate = useNavigate();
+  const isReviewer = user?.role === "reviewer";
+  const isAnalyst = user?.role === "analyst" || user?.role === "admin";
 
+  const NAV = [
+    { to: "/", label: "Dashboard", icon: "⬛", show: true },
+    { to: "/upload", label: "Upload Center", icon: "⬆", show: isAnalyst },
+    { to: "/review", label: "Review Queue", icon: "✓", show: isReviewer },
+    { to: "/audit", label: "Audit Timeline", icon: "📋", show: true },
+  ];
+  const navigate = useNavigate();
   const handleSignOut = () => {
     signOut();
     navigate("/login");
@@ -36,7 +37,7 @@ export default function Layout() {
 
         {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-0.5">
-          {NAV.map(({ to, label, icon }) => (
+          {NAV.filter(item => item.show).map(({ to, label, icon }) => (
             <NavLink
               key={to}
               to={to}
