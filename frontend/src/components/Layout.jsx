@@ -44,9 +44,6 @@ export default function Layout() {
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
 
-      {/* ─────────────────────────────────────────
-          DESKTOP SIDEBAR (hidden on mobile/tablet)
-      ───────────────────────────────────────── */}
       <aside className="hidden lg:flex w-56 bg-gray-900 flex-col shrink-0">
         {/* Logo */}
         <div className="px-5 py-5 border-b border-gray-700/60">

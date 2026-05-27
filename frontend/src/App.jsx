@@ -84,7 +84,6 @@ export default function App() {
         <Route path="audit" element={<AuditTimelinePage />} />
       </Route>
 
-      {/* Koi bhi unknown URL — login par bhejo */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
